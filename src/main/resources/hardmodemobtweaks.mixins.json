@@ -10,6 +10,7 @@
   "mixins": [
     "entity.SculkShriekerBlockEntityMixin",
     "entity.mob.BlazeGoalMixin",
+    "entity.mob.BlazeMixin",
     "entity.mob.DrownedMixin",
     "entity.mob.SpiderMixin",
     "entity.mob.SwellGoalAccessor",

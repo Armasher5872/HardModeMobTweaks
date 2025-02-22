@@ -42,7 +42,7 @@ public abstract class SwellGoalMixin {
                         (int) (creeper.getY()),
                         (int) (creeper.getZ() + Math.sin(new_rad) * distance_from_target)
                 ), 0);
-                navigation.moveTo(path, 2.4D);
+                navigation.moveTo(path, 1.2D);
             }
         }
     }

@@ -14,6 +14,7 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.phazoganon.hardmodemobtweaks.HardModeMobTweaks;
 
@@ -22,7 +23,7 @@ import java.util.Locale;
 @EventBusSubscriber(modid = HardModeMobTweaks.MODID)
 public abstract class OnFinalizeSpawnEvent {
     @SubscribeEvent
-    public static void onFinalizeSpawn(MobSpawnEvent finalizeSpawn) {
+    public static void onFinalizeSpawn(FinalizeSpawnEvent finalizeSpawn) {
         Mob mob = finalizeSpawn.getEntity();
         Difficulty difficulty = mob.level().getDifficulty();
         //Blaze
