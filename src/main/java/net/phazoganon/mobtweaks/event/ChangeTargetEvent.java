@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.event;
+package net.phazoganon.mobtweaks.event;
 
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,9 +11,9 @@ import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
-import net.phazoganon.hardmodemobtweaks.HardModeMobTweaks;
+import net.phazoganon.mobtweaks.MobTweaks;
 
-@EventBusSubscriber(modid = HardModeMobTweaks.MODID)
+@EventBusSubscriber(modid = MobTweaks.MODID)
 public class ChangeTargetEvent {
     @SubscribeEvent
     public static void setTarget(LivingChangeTargetEvent event) {

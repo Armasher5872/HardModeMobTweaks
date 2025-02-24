@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.event;
+package net.phazoganon.mobtweaks.event;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.monster.Monster;
@@ -6,11 +6,11 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityMountEvent;
-import net.phazoganon.hardmodemobtweaks.HardModeMobTweaks;
-import net.phazoganon.hardmodemobtweaks.util.ModGamerules;
-import net.phazoganon.hardmodemobtweaks.util.ModTags;
+import net.phazoganon.mobtweaks.MobTweaks;
+import net.phazoganon.mobtweaks.util.ModGamerules;
+import net.phazoganon.mobtweaks.util.ModTags;
 
-@EventBusSubscriber(modid = HardModeMobTweaks.MODID)
+@EventBusSubscriber(modid = MobTweaks.MODID)
 public class MountEvent {
     @SubscribeEvent
     public static void onMount(EntityMountEvent event) {

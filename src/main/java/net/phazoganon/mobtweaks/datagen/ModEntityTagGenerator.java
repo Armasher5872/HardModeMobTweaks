@@ -1,17 +1,17 @@
-package net.phazoganon.hardmodemobtweaks.datagen;
+package net.phazoganon.mobtweaks.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.world.entity.EntityType;
-import net.phazoganon.hardmodemobtweaks.HardModeMobTweaks;
-import net.phazoganon.hardmodemobtweaks.util.ModTags;
+import net.phazoganon.mobtweaks.MobTweaks;
+import net.phazoganon.mobtweaks.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
 public class ModEntityTagGenerator extends EntityTypeTagsProvider {
     public ModEntityTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-        super(output, provider, HardModeMobTweaks.MODID);
+        super(output, provider, MobTweaks.MODID);
     }
     @Override
     protected void addTags(HolderLookup.Provider provider) {

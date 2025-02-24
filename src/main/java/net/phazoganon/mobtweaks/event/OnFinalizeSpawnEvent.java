@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.event;
+package net.phazoganon.mobtweaks.event;
 
 
 import net.minecraft.resources.ResourceLocation;
@@ -8,6 +8,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.MushroomCow;
+import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
@@ -15,12 +18,11 @@ import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
-import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
-import net.phazoganon.hardmodemobtweaks.HardModeMobTweaks;
+import net.phazoganon.mobtweaks.MobTweaks;
 
 import java.util.Locale;
 
-@EventBusSubscriber(modid = HardModeMobTweaks.MODID)
+@EventBusSubscriber(modid = MobTweaks.MODID)
 public abstract class OnFinalizeSpawnEvent {
     @SubscribeEvent
     public static void onFinalizeSpawn(FinalizeSpawnEvent finalizeSpawn) {
@@ -133,6 +135,15 @@ public abstract class OnFinalizeSpawnEvent {
                 mob.setHealth(mob.getHealth()+6.0F);
             }
         }
+        //Goat
+        if (mob instanceof Goat) {
+            if (difficulty == Difficulty.NORMAL) {
+                mob.getAttribute(Attributes.ATTACK_KNOCKBACK).addPermanentModifier(new AttributeModifier(prefix("normal_attack_knockback"), 2.1F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            }
+            if (difficulty == Difficulty.HARD) {
+                mob.getAttribute(Attributes.ATTACK_KNOCKBACK).addPermanentModifier(new AttributeModifier(prefix("hard_attack_knockback"), 4.1F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            }
+        }
         //Guardian
         if (mob instanceof Guardian) {
             if (difficulty == Difficulty.EASY) {
@@ -142,6 +153,23 @@ public abstract class OnFinalizeSpawnEvent {
             if (difficulty == Difficulty.HARD) {
                 mob.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(prefix("hard_hp"), 10.0F, AttributeModifier.Operation.ADD_VALUE));
                 mob.setHealth(mob.getHealth()+10.0F);
+            }
+        }
+        //Iron Golem
+        if (mob instanceof IronGolem) {
+            if (difficulty == Difficulty.NORMAL) {
+                mob.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(prefix("normal_hp"), 100.0F, AttributeModifier.Operation.ADD_VALUE));
+                mob.setHealth(mob.getHealth()+100.0F);
+            }
+            if (difficulty == Difficulty.HARD) {
+                mob.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(prefix("normal_hp"), 200.0F, AttributeModifier.Operation.ADD_VALUE));
+                mob.setHealth(mob.getHealth()+200.0F);
+            }
+        }
+        //Mooshroom
+        if (mob instanceof MushroomCow mushroomCow) {
+            if (Math.random() <= 0.1F) {
+                mushroomCow.setVariant(MushroomCow.Variant.BROWN);
             }
         }
         //Piglin
@@ -234,6 +262,6 @@ public abstract class OnFinalizeSpawnEvent {
         }
     }
     private static ResourceLocation prefix(String string) {
-        return ResourceLocation.fromNamespaceAndPath(HardModeMobTweaks.MODID, string.toLowerCase(Locale.ROOT));
+        return ResourceLocation.fromNamespaceAndPath(MobTweaks.MODID, string.toLowerCase(Locale.ROOT));
     }
 }

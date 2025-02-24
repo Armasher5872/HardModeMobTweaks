@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.mixin.entity;
+package net.phazoganon.mobtweaks.mixin.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -6,7 +6,6 @@ import net.minecraft.util.SpawnUtil;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SculkShriekerBlockEntity;

@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.mixin.entity.mob;
+package net.phazoganon.mobtweaks.mixin.entity.mob;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;

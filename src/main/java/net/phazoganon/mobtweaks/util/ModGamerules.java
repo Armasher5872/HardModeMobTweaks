@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.util;
+package net.phazoganon.mobtweaks.util;
 
 import net.minecraft.world.level.GameRules;
 

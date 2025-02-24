@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.mixin.entity.mob;
+package net.phazoganon.mobtweaks.mixin.entity.mob;
 
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
@@ -34,7 +34,7 @@ public abstract class SpiderMixin extends Monster {
             case NORMAL -> difficultyChance = 2;
             case HARD -> difficultyChance = 6;
         }
-        if (randomsource.nextInt(100) == difficultyChance) {
+        if (randomsource.nextInt(100) <= difficultyChance) {
             Skeleton skeleton = EntityType.SKELETON.create(this.level(), EntitySpawnReason.JOCKEY);
             if (skeleton != null) {
                 skeleton.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);

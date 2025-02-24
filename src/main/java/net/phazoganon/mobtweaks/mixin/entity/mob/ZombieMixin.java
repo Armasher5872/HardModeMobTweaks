@@ -1,15 +1,20 @@
-package net.phazoganon.hardmodemobtweaks.mixin.entity.mob;
+package net.phazoganon.mobtweaks.mixin.entity.mob;
 
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.EventHooks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -104,5 +109,32 @@ public abstract class ZombieMixin extends Monster {
             }
             this.setItemSlot(EquipmentSlot.MAINHAND, item);
         }
+    }
+    @Inject(method = "killedEntity", at = @At(value = "RETURN"), cancellable = true)
+    private void killedEntity(ServerLevel p_219160_, LivingEntity p_219161_, CallbackInfoReturnable<Boolean> cir) {
+        boolean flag = super.killedEntity(p_219160_, p_219161_);
+        if ((p_219160_.getDifficulty() == Difficulty.EASY || p_219160_.getDifficulty() == Difficulty.NORMAL) && p_219161_ instanceof Villager villager) {
+            if (EventHooks.canLivingConvert(p_219161_, EntityType.ZOMBIE_VILLAGER, (timer) -> {
+            })) {
+                if (p_219160_.getDifficulty() != Difficulty.EASY && this.random.nextBoolean()) {
+                    cir.setReturnValue(flag);
+                }
+                ZombieVillager zombievillager = villager.convertTo(EntityType.ZOMBIE_VILLAGER, ConversionParams.single(villager, true, true), (p_370686_) -> {
+                    p_370686_.finalizeSpawn(p_219160_, p_219160_.getCurrentDifficultyAt(p_370686_.blockPosition()), EntitySpawnReason.CONVERSION, new Zombie.ZombieGroupData(false, true));
+                    p_370686_.setVillagerData(villager.getVillagerData());
+                    p_370686_.setGossips(villager.getGossips().store(NbtOps.INSTANCE));
+                    p_370686_.setTradeOffers(villager.getOffers().copy());
+                    p_370686_.setVillagerXp(villager.getVillagerXp());
+                    EventHooks.onLivingConvert(villager, p_370686_);
+                    if (!this.isSilent()) {
+                        p_219160_.levelEvent(null, 1026, this.blockPosition(), 0);
+                    }
+                });
+                if (zombievillager != null) {
+                    flag = false;
+                }
+            }
+        }
+        cir.setReturnValue(flag);
     }
 }

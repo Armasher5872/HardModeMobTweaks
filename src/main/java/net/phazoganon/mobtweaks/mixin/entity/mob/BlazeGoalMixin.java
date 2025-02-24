@@ -1,4 +1,4 @@
-package net.phazoganon.hardmodemobtweaks.mixin.entity.mob;
+package net.phazoganon.mobtweaks.mixin.entity.mob;
 
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.monster.Blaze;
