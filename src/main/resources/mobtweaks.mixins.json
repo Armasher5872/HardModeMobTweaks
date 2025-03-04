@@ -12,6 +12,7 @@
     "entity.mob.BlazeGoalMixin",
     "entity.mob.BlazeMixin",
     "entity.mob.CaveSpiderMixin",
+    "entity.mob.CreeperMixin",
     "entity.mob.DrownedMixin",
     "entity.mob.HoglinMixin",
     "entity.mob.PiglinAiMixin",
@@ -21,7 +22,13 @@
     "entity.mob.SwellGoalAccessor",
     "entity.mob.SwellGoalMixin",
     "entity.mob.WitherSkeletonMixin",
+    "entity.mob.ZoglinMixin",
     "entity.mob.ZombieMixin",
     "entity.mob.ZombieVillagerMixin"
+  ],
+  "client": [
+    "render.ChickenModelMixin",
+    "render.CreeperRendererMixin",
+    "render.CreeperRenderStateMixin"
   ]
 }
